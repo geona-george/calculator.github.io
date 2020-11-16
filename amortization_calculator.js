@@ -204,6 +204,7 @@
 	
 	
 	var startdate = date2.value;
+	var day = moment(startdate);
 	var start_balance=loan_amt;
 	var monthly_payment = monthly_payment + extra;
 	
@@ -229,7 +230,7 @@
 		
 		table += "<tr class='table_info'>";
 		
-		table +="<td  width='70'>"+startdate+"</td>";
+		table +="<td  width='70'>"+day.format('MM/DD/YYYY')+"</td>";
 		table +="<td  width='60'>"+round(start_balance,2)+"</td>";
 	    table +="<td  width='62'>"+round(towards_balance,2)+"</td>";
 		table +="<td width='60' >"+round(towards_interest,2)+"</td>";
@@ -238,20 +239,13 @@
 		table += "</tr>";
       
      var start_balance=end_balance;
+     var day = moment(day).add(1, 'months');
+     day.format('MM/DD/YYYY');
 
      
      
      
-     var startdate=new Date();
-     startdate.setMonth(startdate.getMonth() -4);
-     var mm = String (startdate.getMonth() +1).padStart(2, '0');
-     var dd = String (startdate.getDate() -9).padStart(2, '0'); 
-     var yyyy = startdate.getFullYear();
-     startdate= mm + '/' + dd + '/' + yyyy;
-     
-     
-
-
+    
      }
 	
 	
