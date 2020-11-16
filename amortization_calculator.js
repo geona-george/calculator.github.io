@@ -4,14 +4,12 @@
 	var showMonths;
 	var showRate;
 	var showExtra;
+	var showNegative;
 	$("input[id='submit']").attr("disabled", "disabled");
 
 
 	$('#loan_amt').change( function() {  
-		
-	
-		
-	  if ($('#loan_amt').val() <= 0 || isNaN(Number($('#loan_amt').val()))  ){
+		if ($('#loan_amt').val() <= 0 || isNaN(Number($('#loan_amt').val()))  ){
 			
 			$('#dialog').css('display', 'block');
 			$('#amount').css('display', 'block');
@@ -70,7 +68,7 @@
 			$('#dialog').css('display', 'block');
 			$('#extraPayment').css('display', 'block');
 			$('#extraPayment').html('<img src="images.png"  width="25" height="25" /> Please enter a valid extra payment.');
-			showRate = true;
+			showExtra = true;
 	  }
 	  else{
 		$('#extraPayment').css('display', 'none');
@@ -82,6 +80,25 @@
 	  }
  });
 
+
+ $('#negative').change(function() {
+	if ( $('#negative').val() < 0 ||  isNaN(Number($('#negative').val()))  ){
+		  
+		  $('#dialog').css('display', 'block');
+		  $('#negativePayment').css('display', 'block');
+		  $('#negativePayment').html('<img src="images.png"  width="25" height="25" /> Please enter a valid negative payment.');
+		  showNegative = true;
+	}
+	else{
+	  $('#negativePayment').css('display', 'none');
+	  showNegative = false;
+	  if( (showAmount == false) && (showMonths == false) && (showRate == false) ){
+	  $('#dialog').css('display','none');
+	  $("input[id='submit']").removeAttr("disabled"); 
+  }
+	}
+});
+
 	
 
  function startover() {
@@ -90,9 +107,9 @@
     document.loan_form.months.value="";
     document.loan_form.date1.value="";
     document.loan_form.date2.value="";
-
-	document.loan_form.rate.value="";
+    document.loan_form.rate.value="";
 	document.loan_form.extra.value="0";
+	document.loan_form.negative.value="0";
 	
 	document.getElementById("loan_info").innerHTML="";
 	document.getElementById("table").innerHTML = "";
@@ -111,6 +128,7 @@
     var date2 = document.loan_form.date2.value;
 	var rate = document.loan_form.rate.value;
 	var extra = document.loan_form.extra.value;
+	var negative= document.loan_form.negative.value;
 	
 
 		
@@ -151,10 +169,14 @@
 		document.loan_form.extra.value="0";
 	
 	}
+	else if (negative < 0 ||  isNaN(Number(negative)) ){
+		alert("Please enter a valid negative payment.");
+		document.loan_form.negative.value="0";
+	}
 	
 	
 	else {  
-		calculate(parseFloat(loan_amt), parseInt(months), parseFloat(rate), parseFloat(extra));
+		calculate(parseFloat(loan_amt), parseInt(months), parseFloat(rate), parseFloat(extra), parseFloat(negative));
 	}
 	
 
@@ -163,7 +185,7 @@
  }
 
 
- function calculate(loan_amt, months, rate, extra) {
+ function calculate(loan_amt, months, rate, extra, negative) {
 
 	i = rate/100;
 	
@@ -187,9 +209,14 @@
 	
 	info += "<tr><td>+Extra:</td>";
 	info += "<td align='right'>$"+extra+"</td></tr>";
+
+	info += "<tr><td>-Negative:</td>";
+	info += "<td align='right'>$"+negative+"</td></tr>";
 	
 	info += "<tr><td>Total Payment:</td>";
-	info += "<td align='right'>$"+round(monthly_payment+extra,2)+"</td></tr>";
+	info += "<td align='right'>$"+round((monthly_payment+extra-negative),2)+"</td></tr>";
+
+
 	
 	info += "</table>";
 	
@@ -202,11 +229,10 @@
 	
 	table += "<table cellpadding='15' ";
 	
-	
-	var startdate = date2.value;
-	var day = moment(startdate);
+	var startdate=date2.value;
+    var day = moment(startdate);
 	var start_balance=loan_amt;
-	var monthly_payment = monthly_payment + extra;
+	var monthly_payment = monthly_payment + extra - negative;
 	
 	while(start_balance > 0 ) {
 		
@@ -230,27 +256,28 @@
 		
 		table += "<tr class='table_info'>";
 		
-		table +="<td  width='70'>"+day.format('MM/DD/YYYY')+"</td>";
+		table +="<td  width='70'>"+day.format('MM/DD/YYYY')+"</td>";	
 		table +="<td  width='60'>"+round(start_balance,2)+"</td>";
 	    table +="<td  width='62'>"+round(towards_balance,2)+"</td>";
 		table +="<td width='60' >"+round(towards_interest,2)+"</td>";
 		table +="<td  width='83'>"+round(monthly_payment,2)+"</td>";
-		table +="<td  width='70' >"+round(end_balance,2)+"</td>";
+		table +="<td  width='71' >"+round(end_balance,2)+"</td>";
 		table += "</tr>";
       
-     var start_balance=end_balance;
-     var day = moment(day).add(1, 'months');
-     day.format('MM/DD/YYYY');
-
-     
-     
-     
-    
-     }
+		var start_balance=end_balance;
+		var day = moment(day).add(1, 'months');
+		
+		
+	 }
+	 
+ 
+	 
+	 
+	 
+	 
 	
 	
-	
-	 table += "</table>";
+	 
 	
 	 document.getElementById("table").innerHTML = table;
 
@@ -261,10 +288,6 @@
 	return (Math.round(num*Math.pow(10,dec))/ Math.pow(10,dec)).toFixed(dec);
 
  }
-
-
-
-
 
 
 
