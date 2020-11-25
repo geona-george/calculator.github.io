@@ -1,122 +1,97 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-
 	<link href="amortization_calculator.css" rel="stylesheet" type="text/css">
-
 	<title>AMORTIZATION CALCULATOR</title>
-
-	
-	
 </head>
 
 <body>
-
 	<div id="outline">
-	
-		
-		
-		
-		
 		<h2>LOAN INSTALLMENT CALCULATOR</h2>
-		
 		<hr/>
-		
-		<div id="loan_setup"> 
-		
+		<div id="loan_setup">
 			<form name="loan_form">
-			
 				<table style="margin:10px;">
-				
 					<tr>
 						<td>Loan Amount:</td>
-						<td><input type="text" id='loan_amt' name="loan_amt" size="10" class="entries"/></td>
+						<td>
+							<input type="text" id='loan_amt' name="loan_amt" size="10" class="entries" />
+						</td>
 					</tr>
-					
 					<tr>
 						<td>Term:</td>
-                        <td><input type="text" id='months' name="months" size="10" class="entries"/></td>
-                        </tr>
-
-                        <tr>
-                            <td>Disbursement date:</td>
-                            <td><input type="text"  id='date1' placeholder="MM/DD/YYYY"  name="date1"   size="10" class="entries"/></td>
-                        </tr>
-    
-                       <tr>
-                           <td>Payment start date:</td>
-                           <td><input type="text" id='date2' placeholder="MM/DD/YYYY"  name="date2"  size="10" class="entries"/></td>
-                         </tr>     
-					
+						<td>
+							<input type="text" id='months' name="months" size="10" class="entries" />
+						</td>
+					</tr>
+					<tr>
+						<td>Disbursement date:</td>
+						<td>
+							<input type="text" id='date1' placeholder="MM/DD/YYYY" name="date1" size="10" class="entries" />
+						</td>
+					</tr>
+					<tr>
+						<td>Payment start date:</td>
+						<td>
+							<input type="text" id='date2' placeholder="MM/DD/YYYY" name="date2" size="10" class="entries" />
+						</td>
+					</tr>
 					<tr>
 						<td>Annual Interest Rate: </td>
-						<td><input type="text" id="rate" name="rate" size="10" class="entries"/></td>
+						<td>
+							<input type="text" id="rate" name="rate" size="10" class="entries" />
+						</td>
 					</tr>
-					
 					<tr>
 						<td>Extra Payment:</td>
-						<td><input type="text" id='extra' name="extra" size="10" value="0" class="entries"/></td>
+						<td>
+							<input type="text" id='extra' name="extra" size="10" value="0" class="entries" />
+						</td>
 					</tr>
-					
 					<tr>
 						<td>Negative Payment:</td>
-						<td><input type="text" id='negative' name="negative" size="10" value="0" class="entries"/></td>
+						<td>
+							<input type="text" id='negative' name="negative" size="10" value="0" class="entries" />
+						</td>
 					</tr>
-				
 					<tr>
-						<td><input type="button" id='submit' onclick="validate()" value="Calculate" class="do"/></td>
-						<td><input type="button" id='reset' onclick="startover()" value="Startover" class="do" /></td>
+						<td>
+							<input type="button" id='submit' onclick="validate()" value="Calculate" class="do" />
+						</td>
+						<td>
+							<input type="button" id='reset' onclick="startover()" value="Startover" class="do" />
+						</td>
 					</tr>
-				
-				
 				</table>
-			
-			
 			</form>
-		
-		
 		</div>
-		
 		<div id="loan_info">
 			<div id="dialog" title="Basic dialog">
-			<p id='amount'></p>
-			<p id='numMonths'></p>
-			<p id='interestRate'></p>
-			<p id='extraPayment'></p>
-			<p id='negativePayment'></p>
-		 </div>
+				<p id='amount'></p>
+				<p id='numMonths'></p>
+				<p id='interestRate'></p>
+				<p id='extraPayment'></p>
+				<p id='negativePayment'></p>
+			</div>
 		</div>
-		
-		
-		
 		<div id="table_header">
-		
-			<table cellpadding="15" >
+			<table cellpadding="15">
 				<tr>
 					<td width="70" align="center"><b>Date</b></td>
 					<td width="60" align="center"><b>Start Balance</b></td>
 					<td width="62" align="center"><b>Principal</b></td>
 					<td width="60" align="center"><b>Interest</b></td>
 					<td width="83" align="center"><b>Total Pmt</b></td>
-					<td width="70" align="center"><b>End Balance</b></td>
-				</tr>	
+					<td width="71" align="center"><b>End Balance</b></td>
+				</tr>
 			</table>
-			
 		</div>
-		
-		
-		
-		<div id="table" class="table_info">
-			   
-		</div>
-	
-	
-	
+		<div id="table" class="table_info"> </div>
 	</div>
-
-	<script src="momentlocale.js"></script>
-	<script src="moment.min.js"></script>
-<script src="amortization_calculator.js"></script>
-
+	<script src="lib/moment/momentlocale.js"></script>
+	<script src="lib/moment/moment.min.js"></script>
+	<script src="amortization_calculator.js"></script>
 </body>
-</html>
+
+</html>	
