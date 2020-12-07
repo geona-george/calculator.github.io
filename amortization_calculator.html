@@ -56,6 +56,12 @@
 						</td>
 					</tr>
 					<tr>
+						<td>Has interest-only loan: </td>
+						<td>
+							<input type="text" id="interest_only" name="interest_only" size="10" class="entries" />
+						</td>
+					</tr>
+					<tr>
 						<td>
 							<input type="button" id='submit' onclick="validate()" value="Calculate" class="do" />
 						</td>
@@ -73,6 +79,8 @@
 				<p id='interestRate'></p>
 				<p id='extraPayment'></p>
 				<p id='negativePayment'></p>
+				
+
 			</div>
 		</div>
 		<div id="table_header">
@@ -89,8 +97,8 @@
 		</div>
 		<div id="table" class="table_info"> </div>
 	</div>
-	<script src="momentlocale.js"></script>
-	<script src="moment.min.js"></script>
+	<script src="lib/moment/momentlocale.js"></script>
+	<script src="lib/moment/moment.min.js"></script>
 	<script src="amortization_calculator.js"></script>
 </body>
 
