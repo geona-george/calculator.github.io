@@ -3,6 +3,8 @@ var showMonths;
 var showRate;
 var showExtra;
 var showNegative;
+
+
 $("input[id='submit']").attr("disabled", "disabled");
 $('#loan_amt').change(function() {
 	if($('#loan_amt').val() <= 0 || isNaN(Number($('#loan_amt').val()))) {
@@ -80,6 +82,7 @@ $('#negative').change(function() {
 	}
 });
 
+
 function startover() {
 	document.loan_form.loan_amt.value = "";
 	document.loan_form.months.value = "";
@@ -88,6 +91,7 @@ function startover() {
 	document.loan_form.rate.value = "";
 	document.loan_form.extra.value = "0";
 	document.loan_form.negative.value = "0";
+	document.loan_form.interest_only.value="";
 	document.getElementById("loan_info").innerHTML = "";
 	document.getElementById("table").innerHTML = "";
 	location.reload();
@@ -101,6 +105,7 @@ function validate() {
 	var rate = document.loan_form.rate.value;
 	var extra = document.loan_form.extra.value;
 	var negative = document.loan_form.negative.value;
+	var interest_only=document.loan_form.interest_only.value;
 	if(loan_amt <= 0 || isNaN(Number(loan_amt))) {
 		alert("Please enter a valid loan amount.");
 		document.loan_form.loan_amt.value = "";
@@ -122,6 +127,9 @@ function validate() {
 	} else if(negative < 0 || isNaN(Number(negative))) {
 		alert("Please enter a valid negative payment.");
 		document.loan_form.negative.value = "0";
+	} else if(!interest_only.match(/^[a-zA-Z]+$/)) {
+		alert("Please enter yes or no for interest-only");
+		document.loan_form.interest_only.value = "";
 	} else {
 		calculate(parseFloat(loan_amt), parseInt(months), parseFloat(rate), parseFloat(extra), parseFloat(negative));
 	}
@@ -129,7 +137,7 @@ function validate() {
 
 function calculate(loan_amt, months, rate, extra, negative) {
 	i = rate / 100;
-	var monthly_payment = loan_amt * (i / 12) * Math.pow((1 + i / 12), months) / (Math.pow((1 + i / 12), months) - 1);
+	var monthly_payment = loan_amt * (i / 12) * Math.pow((1 + i / 12), (months-3)) / (Math.pow((1 + i / 12), (months-3)) - 1);
 	var info = "";
 	info += "<table width='250'>";
 	info += "<tr><td>Loan Amount:</td>";
@@ -153,6 +161,21 @@ function calculate(loan_amt, months, rate, extra, negative) {
 	var startdate = date2.value;
 	var day = moment(startdate);
 	var start_balance = loan_amt;
+	towards_interest = (i / 12) * start_balance;
+	var j;
+	var month_payment=(i / 12) * start_balance;
+	   for(j=1;j<=3;j++){
+		table += "<tr class='table_info'>";
+		table += "<td  width='70'>" + day.format('MM/DD/YYYY') + "</td>";
+		table += "<td  width='60'>" + round(start_balance, 2) + "</td>";
+		table += "<td  width='62'>" + 0 + "</td>";
+		table += "<td width='60' >" + round(towards_interest, 2) + "</td>";
+		table += "<td  width='83'>" + round(month_payment, 2) + "</td>";
+		table += "<td  width='71' >" + round(start_balance, 2) + "</td>";
+		table += "</tr>";
+	   
+		var day = moment(day).add(1, 'months');
+	   }
 	var monthly_payment = monthly_payment + extra - negative;
 	while(start_balance > 0) {
 		towards_interest = (i / 12) * start_balance;
@@ -178,7 +201,3 @@ function calculate(loan_amt, months, rate, extra, negative) {
 function round(num, dec) {
 	return(Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec)).toFixed(dec);
 }
-	
-	
-
-	
