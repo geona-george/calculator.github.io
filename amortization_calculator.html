@@ -16,58 +16,49 @@
 					<tr>
 						<td>Loan Amount:</td>
 						<td>
-							<input type="text" id='loan_amt' name="loan_amt" size="10" class="entries" />
-						</td>
+							<input type="text" id='loan_amt' name="loan_amt" size="10" class="entries" /> </td>
 					</tr>
 					<tr>
 						<td>Term:</td>
 						<td>
-							<input type="text" id='months' name="months" size="10" class="entries" />
-						</td>
+							<input type="text" id='months' name="months" size="10" class="entries" /> </td>
 					</tr>
 					<tr>
 						<td>Disbursement date:</td>
 						<td>
-							<input type="text" id='date1' placeholder="MM/DD/YYYY" name="date1" size="10" class="entries" />
-						</td>
+							<input type="text" id='date1' placeholder="MM/DD/YYYY" name="date1" size="10" class="entries" /> </td>
 					</tr>
 					<tr>
 						<td>Payment start date:</td>
 						<td>
-							<input type="text" id='date2' placeholder="MM/DD/YYYY" name="date2" size="10" class="entries" />
-						</td>
+							<input type="text" id='date2' placeholder="MM/DD/YYYY" name="date2" size="10" class="entries" /> </td>
 					</tr>
 					<tr>
 						<td>Annual Interest Rate: </td>
 						<td>
-							<input type="text" id="rate" name="rate" size="10" class="entries" />
-						</td>
+							<input type="text" id="rate" name="rate" size="10" class="entries" /> </td>
 					</tr>
 					<tr>
 						<td>Extra Payment:</td>
 						<td>
-							<input type="text" id='extra' name="extra" size="10" value="0" class="entries" />
-						</td>
+							<input type="text" id='extra' name="extra" size="10" value="0" class="entries" /> </td>
 					</tr>
 					<tr>
 						<td>Negative Payment:</td>
 						<td>
-							<input type="text" id='negative' name="negative" size="10" value="0" class="entries" />
-						</td>
+							<input type="text" id='negative' name="negative" size="10" value="0" class="entries" /> </td>
 					</tr>
 					<tr>
 						<td>Has interest-only loan: </td>
 						<td>
-							<input type="text" id="interest_only" name="interest_only" size="10" class="entries" />
-						</td>
+							<input type="radio" id='radio' name="radio" size="10" value="radio" />Yes
+							<input type="radio" id='radios' name="radios" size="10" value="radios" />No </td>
 					</tr>
 					<tr>
 						<td>
-							<input type="button" id='submit' onclick="validate()" value="Calculate" class="do" />
-						</td>
+							<input type="button" id='submit' onclick="validate()" value="Calculate" class="do" /> </td>
 						<td>
-							<input type="button" id='reset' onclick="startover()" value="Startover" class="do" />
-						</td>
+							<input type="button" id='reset' onclick="startover()" value="Startover" class="do" /> </td>
 					</tr>
 				</table>
 			</form>
@@ -79,8 +70,6 @@
 				<p id='interestRate'></p>
 				<p id='extraPayment'></p>
 				<p id='negativePayment'></p>
-				
-
 			</div>
 		</div>
 		<div id="table_header">
