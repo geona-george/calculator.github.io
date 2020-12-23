@@ -79,6 +79,18 @@ $('#negative').change(function() {
 		}
 	}
 });
+$(function radio() {
+	$('input[name="rad"]').click(function radio() {
+		var $radio = $(this);
+		// if this was previously checked
+		if($radio.data('waschecked') == true) {
+			$radio.prop('checked', false);
+			$radio.data('waschecked', false);
+		} else $radio.data('waschecked', true);
+		// remove was checked from other radios
+		$radio.siblings('input[name="rad"]').data('waschecked', false);
+	});
+});
 
 function startover() {
 	document.loan_form.loan_amt.value = "";
@@ -126,8 +138,6 @@ function validate() {
 		document.loan_form.negative.value = "0";
 	} else if(!document.getElementById('radio').checked && !document.getElementById('radios').checked) {
 		alert("Please mark yes or no");
-	} else if(document.getElementById('radio').checked && document.getElementById('radios').checked) {
-		alert("Please mark either yes or no,not both");	
 	} else {
 		calculate(parseFloat(loan_amt), parseInt(months), parseFloat(rate), parseFloat(extra), parseFloat(negative));
 	}
@@ -135,6 +145,7 @@ function validate() {
 
 function calculate(loan_amt, months, rate, extra, negative) {
 	if(document.getElementById('radio').checked) {
+		document.getElementById("radios").disabled = true;
 		i = rate / 100;
 		var month_payment = (i / 12) * loan_amt;
 		var info = "";
@@ -179,7 +190,6 @@ function calculate(loan_amt, months, rate, extra, negative) {
 		while(start_balance > 0) {
 			towards_interest = (i / 12) * start_balance;
 			if(monthly_payment > start_balance) {
-				document.getElementById("radios").disabled=true;
 				monthly_payment = start_balance + towards_interest;
 			}
 			towards_balance = monthly_payment - towards_interest;
@@ -197,7 +207,7 @@ function calculate(loan_amt, months, rate, extra, negative) {
 		}
 		document.getElementById("table").innerHTML = table;
 	} else if(document.getElementById('radios').checked) {
-		document.getElementById("radio").disabled=true;
+		document.getElementById("radio").disabled = true;
 		i = rate / 100;
 		var monthly_payment = loan_amt * (i / 12) * Math.pow((1 + i / 12), (months)) / (Math.pow((1 + i / 12), (months)) - 1);
 		var info = "";
