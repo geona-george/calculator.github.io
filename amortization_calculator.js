@@ -145,7 +145,6 @@ function validate() {
 
 function calculate(loan_amt, months, rate, extra, negative) {
 	if(document.getElementById('radio').checked) {
-		document.getElementById("radios").disabled = true;
 		i = rate / 100;
 		var month_payment = (i / 12) * loan_amt;
 		var info = "";
@@ -207,7 +206,6 @@ function calculate(loan_amt, months, rate, extra, negative) {
 		}
 		document.getElementById("table").innerHTML = table;
 	} else if(document.getElementById('radios').checked) {
-		document.getElementById("radio").disabled = true;
 		i = rate / 100;
 		var monthly_payment = loan_amt * (i / 12) * Math.pow((1 + i / 12), (months)) / (Math.pow((1 + i / 12), (months)) - 1);
 		var info = "";
