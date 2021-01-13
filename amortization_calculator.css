@@ -129,6 +129,7 @@ table {
 	display: none;
 }
 
+
 #extraPayment {
 	display: none;
 }
@@ -136,6 +137,65 @@ table {
 #negativePayment {
 	display: none;
 }
+
+
+@media only screen and (max-width: 780px) {
+	#outline{
+	width: 550px;
+	height: 800px;}
+
+	#loan_info {
+		position: absolute;
+		top:370px;}
+
+	#table_header {
+		position: absolute;
+		top:500px;	
+		width: 455px;}
+
+	#table {
+	   position: relative;
+	   top:190px;
+	   width: 455px;	}
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
