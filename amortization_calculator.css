@@ -2,6 +2,10 @@ body {
 	text-align: center;
 }
 
+h2 {
+	text-align: center;
+}
+
 #outline {
 	width: 650px;
 	height: 700px;
@@ -103,17 +107,17 @@ table {
 	position: relative;
 	top: 0%;
 	right: 10%;
-	font-size: 1.15em;
+	font-size: 1.12em;
 	padding: 1em;
 	text-align: left;
 	width: auto;
 	opacity: 0.95;
 	background-color: #F0F0F0;
 	display: none;
-	color: black;
-	-webkit-border-radius: 15px;
-	-moz-border-radius: 15px;
-	border-radius: 15px;
+	color: red;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
 	border: 1px solid #999;
 }
 
@@ -121,81 +125,45 @@ table {
 	display: none;
 }
 
-#numMonths {
-	display: none;
-}
-
 #interestRate {
 	display: none;
 }
 
-
-#extraPayment {
-	display: none;
-}
-
-#negativePayment {
-	display: none;
-}
-
-
 @media only screen and (max-width: 780px) {
-	#outline{
-	width: 550px;
-	height: 800px;}
+	#outline {
+		width: 550px;
+		height: 800px;
+	}
+
+	h2 {
+		text-align: left;
+	}
+
+	#dialog {
+		top: -120%;
+		right: -80%;
+		font-size: 0.8em;
+		padding: 0em;
+	}
 
 	#loan_info {
 		position: absolute;
-		top:370px;}
+		top: 370px;
+	}
 
 	#table_header {
 		position: absolute;
-		top:500px;	
-		width: 455px;}
+		top: 500px;
+		width: 455px;
+	}
 
 	#table {
-	   position: relative;
-	   top:190px;
-	   width: 455px;	}
+		position: relative;
+		top: 190px;
+		width: 455px;
+	}
 
-
-
-
+	table {
+		font-size: 10px;
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
